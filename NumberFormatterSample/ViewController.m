@@ -56,7 +56,7 @@
         formatter.locale = locale;
     }
     
-    _value = 123.456;
+    _value = 1234.5678;
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,9 +81,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     NSNumberFormatter *formatter = _formatters[indexPath.row];
+    NSString *formattedString = [formatter stringFromNumber:@(_value)];
     
-    cell.textLabel.text = [formatter stringFromNumber:@(_value)];
+    cell.textLabel.text = formattedString;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"NSNumberFormatter%@Style", _styles[indexPath.row]];
+    
+//    NSLog(@"%@: %@", formatter.locale.localeIdentifier, formattedString);
     
     return cell;
 }
